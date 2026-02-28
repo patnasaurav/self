@@ -73,7 +73,20 @@ input:focus{
 
   <div>
     <label>Amount:</label>
-    <input type="number" id="wholenumber">
+<input type="text" list="wholenumber" placeholder="Select number">
+<datalist id="wholenumber"></datalist>
+
+<script>
+const list = document.getElementById("wholenumber");
+
+for(let i = 5; i <= 100; i += 5){
+  list.innerHTML += `<option value="${i}">`;
+}
+</script>
+
+    
+    
+  
   </div>
 
 <div>
