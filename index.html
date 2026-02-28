@@ -61,7 +61,7 @@ const [id, gid] = "16MN8hw-PW8D0XPW4qOA2CN6yf2cSjAh0eJnm6MRV4Zk:589739380".trim(
 
    
    {
-        
+        hint:"",
         id: "drive",
         range: "A3:E50",
         headers: ['', ''],
@@ -78,7 +78,7 @@ const [id, gid] = "16MN8hw-PW8D0XPW4qOA2CN6yf2cSjAh0eJnm6MRV4Zk:589739380".trim(
    
 
       {
-        
+        hint:"",
         id: "drive",
         range: "J1:K1",
         headers: ['', ''],
@@ -90,35 +90,11 @@ const [id, gid] = "16MN8hw-PW8D0XPW4qOA2CN6yf2cSjAh0eJnm6MRV4Zk:589739380".trim(
 
 }`;
         }
-      },
- 
-      
-      
-      
-      
-      
-      
-   
-      
-   
-   
-   
-   
-   
-      
-    
-
-
-
-
-
-
-
-
+      }
 ];
 
 // Auto-create containers and fetch data
-    tables.forEach(({id,range,headers,row }) => {
+    tables.forEach(({hint,id,range,headers,row }) => {
       const container = document.createElement("div");
       container.id = id;
       container.textContent = "Loading...";
@@ -128,7 +104,7 @@ const [id, gid] = "16MN8hw-PW8D0XPW4qOA2CN6yf2cSjAh0eJnm6MRV4Zk:589739380".trim(
         .then(r => r.text())
         .then(d => {
           const rows = JSON.parse(d.slice(47, -2)).table.rows;
-          let html = `<table><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`;
+          let html = `${hint}<table><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`;
           rows.forEach(r => html += row(r.c));
           container.innerHTML = html + '</table></br>';
         });
